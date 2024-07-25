@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>API Datos</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">MUESTRA DE USUARIO EN API</h1>
+        <button id="loadData" class="btn btn-primary mb-3">VER DATOS</button>
+        <div id="userData"></div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById("loadData").addEventListener("click", function() {
+            fetch('http://localhost/ivan_chaves/api.php')
+                .then(response => response.json())
+                .then(data => {
+                    let table = '<table class="table table-striped"><thead><tr><th>ID</th><th>Nombre</th><th>Email</th></tr></thead><tbody>';
+                    data.forEach(user => {
+                        table += `<tr><td>${user.id}</td><td>${user.nombre}</td><td>${user.email}</td></tr>`;
+                    });
+                    table += '</tbody></table>';
+                    document.getElementById("userData").innerHTML = table;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById("userData").innerHTML = '<p class="text-danger">Error al cargar los datos. Por favor, intente de nuevo.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

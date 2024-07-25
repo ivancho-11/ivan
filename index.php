@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
+
+
+<!-- 
+Este es el formulario de la evidencia que retomamos tanto el de registo ei inicio de seciòn  
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="stilos.css">
     <title>Registro e Inicio de Sesión</title>
 </head>
@@ -60,10 +65,11 @@
 
 
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Configuración de la base de datos//
+// Esto activa la visualización de errores, lo cual es útil durante el desarrollo para identificar problemas./
 
 
 $servername = "localhost";
@@ -71,7 +77,8 @@ $username = "root";
 $password = "";
 $dbname = "registrar";
 
-// Crear conexión// 
+//   Defino las credenciales para conectarse a la base de datos MySQL. // Crear conexión// 
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -79,6 +86,9 @@ if ($conn->connect_error) {
 } else {
     echo "<p>Conexión exitosa a la base de datos</p>";
 }
+//Establece la conexión con la base de datos usando las credenciales definidas.
+
+
 
 // Verificar conexión// 
 
@@ -86,7 +96,7 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Función para registrar un nuevo usuario//
+// esta Función para registrar un nuevo usuario//
 
 function registrarUsuario($nombre, $email, $password) {
     global $conn;
@@ -102,6 +112,11 @@ function registrarUsuario($nombre, $email, $password) {
         return false;
     }
 }
+//Esta función toma los datos del usuario, hashea la contraseña y los inserta en la base de datos.
+
+
+
+
 
 // Función para iniciar sesión// 
 
@@ -124,7 +139,9 @@ function iniciarSesion($email, $password) {
     return ["success" => false, "message" => "Error en la autenticación"];
 }
 
+
 // Procesar la solicitud// 
+//metodo post
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'] ?? '';

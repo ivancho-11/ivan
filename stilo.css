@@ -1,5 +1,5 @@
 body {
-    background-color: #0d1b2a; /* Azul oscuro */
+    background-color: #69a6e7; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +31,7 @@ h2 {
 
 .move-right {
     text-align: right;
-    margin-right: 10px; /* Ajusta este valor según sea necesario */
+    margin-right: 10px; 
 }
 
 label {
